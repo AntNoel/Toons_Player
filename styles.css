@@ -1,0 +1,215 @@
+:root {
+  --main-bg-color: #393232;
+  --main-txt-color: #f2edd7;
+  --base3-color: #3a6351;
+  --base4-color: #e48257;
+  --valid-color: #5cb85c;
+  --warning-color: #f0ad4e;
+  --invalid-color: #d9534f;
+}
+
+body {
+  color: var(--main-txt-color);
+}
+
+section.cover-section {
+  width: 100%;
+  height: 50%;
+  background-image: url('./assets//backgrounds/purple-coffee.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav.toolbar {
+  padding-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+nav.toolbar a {
+  color: var(--main-txt-color);
+}
+
+section.controls-section {
+  width: 100%;
+  height: 50%;
+  background: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+section.song-info-nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+section.song-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section.main-navigation {
+  width: 100%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.controls {
+  margin-top: 5%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-active {
+  color: var(--base4-color);
+}
+
+p.msg-text {
+  width: 30%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.valid {
+  background-color: var(--valid-color);
+}
+
+.warning {
+  background-color: var(--warning-color);
+}
+.invalid {
+  background-color: var(--invalid-color);
+}
+
+.hide {
+  display: none;
+}
+
+.instructions-div {
+ 
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: grid;
+  width: 30%;
+  
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 5px;
+  justify-content: space-evenly;
+  align-items: center;
+  opacity: 1;
+  transition: opacity .3s;
+}
+.instructions-div > h3 {
+  grid-column: span 2;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  justify-content: center;
+
+}
+.instructions-div > span {
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+
+  @media all and (max-width:30em){
+     .instructions-div > span{
+      display:block;
+      margin:0.2em auto;
+     }
+    }
+ 
+}
+
+.hide {
+  opacity: 0;
+}
+
+
+.pulse-button {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: none;
+  box-shadow: 0 0 0 0 rgba(232, 76, 61, 0.7);
+  border-radius: 50%;
+  background-color: #e84c3d;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+.pulse-button:hover {
+  -webkit-animation: none;
+  -moz-animation: none;
+  -ms-animation: none;
+  animation: none;
+}
+
+
+
+
+@media only screen and (max-width: 700px) {
+  body {
+    color: green;
+    font-size: 20px;
+  }
+
+  nav.toolbar, div.controls {
+    width: 75%;
+  }
+  span {
+    font-size: 1.2rem
+  }
+  .play-bar {
+    width: 50%;
+  }
+  
+
+}
+
+@media only screen and (max-width: 530px) {
+  body {
+    color: yellow;
+    font-size: 22px
+  }
+
+  nav.toolbar, div.controls {
+    width: 90%;
+  }
+  span {
+    font-size: 1rem
+  }
+ 
+  .play-bar {
+    width: 90%;
+  }
+  
+
+}

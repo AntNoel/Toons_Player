@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="resets.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Toons Player</title>
+  </head>
+  <body>
+    <main>
+      <section class="cover-section">
+        <header>
+          <nav class="toolbar">
+            <button class="back-button" href=""
+              ><span class="fas fa-chevron-left"></span
+            ></button>
+            <button class='speak-button' data-activator='true'><span  class="fas fa-comment-alt "></span></button>
+            <button class="to-playlist-button" href=""
+              ><span class="fas fa-ellipsis-h"></span
+            ></button>
+          </nav>
+        </header>
+        <p class='msg-text'>...</p>
+        
+        <div class='instructions-div hide'>
+          <span class=''>Play</span>
+        <span class=''>Pause</span>
+        <span class=''>Previous</span>
+        <span class=''>Next</span>
+        <span class=''>Like</span>
+        <span class=''>Repeat</span>
+        </div>
+       
+      </section>
+      <section class="controls-section">
+        <section class="song-text">
+          <h3 class="song-name">Song Name</h4>
+          <p class="artist-name">Artist Name</p>
+        </section>
+        <section class="main-navigation">
+          <input type="range" class="play-bar" min=0 max=100 step=1 value=0 />
+          <div class="controls">
+            <button data-activator='true' class="repeat-button">
+              <span class="fas fa-redo"></span>
+            </button>
+            <button class="previous-button">
+              <span class="fas fa-step-backward"></span>
+            </button>
+            <button class="play-button">
+              <span class="fas fa-play"></span>
+            </button>
+            <button class="next-button">
+              <span class="fas fa-step-forward"></span>
+            </button>
+            <button data-activator='true' class="heart-button">
+              <span class="fas fa-heart"></span>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type='module' src="script.js" charset="utf-8"></script>
+  </body>
+</html>
