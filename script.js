@@ -1,20 +1,6 @@
 //jshint esversion: 8
 
-//Add the ability to play that song and pause it and skip around
-//Make sure the song name and artist name changes
-//Make a queue that keeps track of what to play and what was previously played
-//Add the ability to go to the previous and next songs in the queue
-
-//Add the ability to recognize speech
-//Make the speech visiable in the top section
-//Add ability to play the music, pause, previous, repeat,and like
-
-//Use the text to query music service
-//Make confirmation before playing the music
-
 // For adding touch events to phones : https://stackoverflow.com/questions/11845678/adding-multiple-event-listeners-to-one-element
-
-//Fixed the heart button
 
 /*****************DOM ELEMENTS********************* */
 

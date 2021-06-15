@@ -11,6 +11,11 @@
 body {
   color: var(--main-txt-color);
 }
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+
+}
 
 section.cover-section {
   width: 100%;
@@ -177,7 +182,7 @@ p.msg-text {
 
 @media only screen and (max-width: 700px) {
   body {
-    color: green;
+    
     font-size: 20px;
   }
 
@@ -196,7 +201,6 @@ p.msg-text {
 
 @media only screen and (max-width: 530px) {
   body {
-    color: yellow;
     font-size: 22px
   }
 
@@ -212,4 +216,54 @@ p.msg-text {
   }
   
 
+}
+
+
+
+/****songs.html********/
+
+.main-section {
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets//backgrounds/purple-coffee.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card {
+  background-color: var(--base3-color);
+  width: 75%;
+  min-height: 250px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 2em;
+
+
+}
+.card > button {
+  width: 70%;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  transition: all .5s;
+  
+}
+
+
+.card > button:hover {
+  background-color: azure;
+  color: black
 }
