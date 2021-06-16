@@ -417,6 +417,12 @@ function isEdge(userAgent = navigator.userAgent.toLowerCase()) {
 
 //On page load
 const initPage = () => {
+  //If there is a song in sessionstorage, add it to the beginning of the queue and delete it from session storage
+  if (sessionStorage.getItem('songToPlay')) {
+    songQueue.unshift(sessionStorage.getItem('songToPlay'));
+    sessionStorage.removeItem('songToPlay');
+  }
+  console.log(songQueue[0]);
   //Load up the first song from the queue
   changeAudioSource(songQueue[0]);
   changeSongInfoText(songQueue[0]);

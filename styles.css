@@ -68,6 +68,14 @@ section.main-navigation {
   justify-content: center;
   align-items: center;
 }
+.play-bar {
+  width: 25%;
+}
+.time-stamps {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+}
 
 div.controls {
   margin-top: 5%;
@@ -192,7 +200,7 @@ p.msg-text {
   span {
     font-size: 1.2rem
   }
-  .play-bar {
+  .play-bar, .time-stamps {
     width: 50%;
   }
   
@@ -211,7 +219,7 @@ p.msg-text {
     font-size: 1rem
   }
  
-  .play-bar {
+  .play-bar, .time-stamps {
     width: 90%;
   }
   
