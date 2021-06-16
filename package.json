@@ -1,6 +1,6 @@
 {
   "name": "toons-player",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A music player that is is voice controlled",
   "main": "script.js",
   "scripts": {
