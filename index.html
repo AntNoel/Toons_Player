@@ -24,7 +24,7 @@
             ></button>
             </a>
             <button class='speak-button' data-activator='true'><span  class="fas fa-comment-alt "></span></button>
-            <button class="to-playlist-button" href=""
+            <button  data-popup-trigger="one" class="to-playlist-button popup-trigger" href=""
               ><span class="fas fa-ellipsis-h"></span
             ></button>
           </nav>
@@ -74,21 +74,20 @@
         </section>
       </section>
 
-      <section class='song-queue'>
-        <h3 class='playlist-number'>Playlist (0)</h3>
-        <section class='playlist-song'>
-          <div class='song-div'>
-            
-            <h3>Song Name</h3>
-            <p>Artist Name</p>
-          </div>
-          <div>
-            <image></image>
-            <h3>Song Name</h3>
-            <p>Artist Name</p>
-          </div>
-        </section>
-      </section>
+      <div class="body-blackout"></div>
+
+
+      <div 
+  class="popup-modal shadow" 
+  data-popup-modal="one">
+  <i class="fas fa-2x fa-times text-white bg-primary p-3 popup-modal__close"></i>
+  <h1 class="queue-header">
+    Queue (0)
+  </h1>
+  <div class='queue-body'>
+
+  </div>
+</div>
     </main>
 
     <script type='module' src="script.js" charset="utf-8"></script>

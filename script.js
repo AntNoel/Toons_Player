@@ -25,6 +25,10 @@ const playingBar = document.querySelector('.play-bar');
 const [repeatButton, prevButton, playButton, nextButton, heartButton] =
   document.querySelectorAll('div.controls button');
 
+const modalTrigger = document.querySelector('.popup-trigger');
+const modalCloseTrigger = document.querySelector('.popup-modal__close');
+const bodyBlackout = document.querySelector('.body-blackout');
+
 /*****************DOM ELEMENTS********************** */
 
 const SECOND = 1000;
@@ -127,7 +131,6 @@ const changeEndTimeStamp = () => {
   //Set it to the duration of the song
   const minutes = Math.floor(audioPlayer.duration / 60);
   const seconds = (audioPlayer.duration % 60).toFixed();
-  console.log(`${minutes}:${seconds}`);
   endTimeStamp.textContent = `${minutes}:${seconds}`;
 };
 
@@ -155,6 +158,47 @@ const showInstructions = (toShow) => {
 };
 
 /*****DOM Changing Functions** */
+const activateQueueModal = () => {
+  const { popupTrigger } = modalTrigger.dataset;
+  const popupModal = document.querySelector(
+    `[data-popup-modal="${popupTrigger}"]`
+  );
+
+  //Add songs in queue to popup modal
+  //Cycle through the queue and add a h3 element + p element to the queue-body div with the name of the song as the h3 and unknown as the artist
+  songQueue.forEach((song) => {
+    //Create a new h3, add the text content to it add it to the queue-body div
+    const songNameHeader = document.createElement('h3');
+    songNameHeader.appendChild(
+      document.createTextNode(
+        `${song.replace('.mp3', '').replaceAll('_', ' ')}`
+      )
+    );
+    const songArtistPara = document.createElement('p');
+    songArtistPara.appendChild(document.createTextNode(`Unknown`));
+    const songInfoDiv = document.createElement('div');
+    songInfoDiv.appendChild(songNameHeader);
+    songInfoDiv.appendChild(songArtistPara);
+    const queueBody = document.querySelector('.queue-body');
+    queueBody.appendChild(songInfoDiv);
+  });
+
+  popupModal.classList.add('is--visible');
+  bodyBlackout.classList.add('is-blacked-out');
+
+  popupModal
+    .querySelector('.popup-modal__close')
+    .addEventListener('click', () => {
+      popupModal.classList.remove('is--visible');
+      bodyBlackout.classList.remove('is-blacked-out');
+    });
+
+  bodyBlackout.addEventListener('click', () => {
+    // TODO: Turn into a function to close modal
+    popupModal.classList.remove('is--visible');
+    bodyBlackout.classList.remove('is-blacked-out');
+  });
+};
 
 const playNewSong = (song) => {
   //reset things
@@ -483,5 +527,7 @@ const initPage = () => {
 
   //Previous play and next button should have the same event listener
   //repeat activates a boolean value
+
+  modalTrigger.addEventListener('click', activateQueueModal);
 };
 initPage();
