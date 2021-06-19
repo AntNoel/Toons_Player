@@ -275,3 +275,28 @@ p.msg-text {
   background-color: azure;
   color: black
 }
+
+
+
+/**********Playlist Queue *******/
+
+.song-queue {
+  padding: 10px;
+  z-index: 3;
+  width: 55%;
+  height:fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--main-bg-color);
+  background-color: var(--main-txt-color);
+  color: var(--main-bg-color);
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.playlist-number {
+  margin-bottom: 50px;
+}

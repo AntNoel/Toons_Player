@@ -57,6 +57,9 @@ const mySpeechRecognitionEvent =
 //Hold our phrases
 const phrases = ['play', 'pause', 'next', 'previous', 'like', 'repeat'];
 
+const startTimeStamp = document.querySelector('.start-time');
+const endTimeStamp = document.querySelector('.end-time');
+
 /*****DOM Changing Functions** */
 
 const clearMsgTextTimer = (time) => {
@@ -107,6 +110,25 @@ const updatePlayBar = () => {
   //Update the value of the playbar
 
   playingBar.value = playTimeToPercentage;
+};
+
+const updateStartTimeStamp = () => {
+  //Change it to the playback time in the song
+  const minutes = Math.floor(audioPlayer.currentTime / 60);
+  console.log();
+  const seconds =
+    (audioPlayer.currentTime % 60).toFixed() < 10
+      ? `0${(audioPlayer.currentTime % 60).toFixed()}`
+      : (audioPlayer.currentTime % 60).toFixed();
+  startTimeStamp.textContent = `${minutes}:${seconds}`;
+};
+
+const changeEndTimeStamp = () => {
+  //Set it to the duration of the song
+  const minutes = Math.floor(audioPlayer.duration / 60);
+  const seconds = (audioPlayer.duration % 60).toFixed();
+  console.log(`${minutes}:${seconds}`);
+  endTimeStamp.textContent = `${minutes}:${seconds}`;
 };
 
 const changeButtonActive = (ele, action) => {
@@ -427,7 +449,6 @@ const initPage = () => {
   changeAudioSource(songQueue[0]);
   changeSongInfoText(songQueue[0]);
   currentSong = songQueue[0];
-
   //Connect the Music Service
   //Setup event listeners to the buttons
 
@@ -437,8 +458,9 @@ const initPage = () => {
 
   //Audio player events
   audioPlayer.addEventListener('timeupdate', updatePlayBar);
-
+  audioPlayer.addEventListener('timeupdate', updateStartTimeStamp);
   audioPlayer.addEventListener('ended', handleSongEnd);
+  audioPlayer.addEventListener('durationchange', changeEndTimeStamp);
   //Speak button event listener
   speakButton.addEventListener('click', (e) => {
     if (!recognition || (recognition && isEdge())) {
