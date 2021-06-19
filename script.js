@@ -28,6 +28,7 @@ const [repeatButton, prevButton, playButton, nextButton, heartButton] =
 const modalTrigger = document.querySelector('.popup-trigger');
 const modalCloseTrigger = document.querySelector('.popup-modal__close');
 const bodyBlackout = document.querySelector('.body-blackout');
+const queueBody = document.querySelector('.queue-body');
 
 /*****************DOM ELEMENTS********************** */
 
@@ -179,9 +180,11 @@ const activateQueueModal = () => {
     const songInfoDiv = document.createElement('div');
     songInfoDiv.appendChild(songNameHeader);
     songInfoDiv.appendChild(songArtistPara);
-    const queueBody = document.querySelector('.queue-body');
     queueBody.appendChild(songInfoDiv);
   });
+
+  const queueHeader = document.querySelector('.queue-header');
+  queueHeader.textContent = `Queue (${songQueue.length})`;
 
   popupModal.classList.add('is--visible');
   bodyBlackout.classList.add('is-blacked-out');
@@ -195,6 +198,10 @@ const activateQueueModal = () => {
 
   bodyBlackout.addEventListener('click', () => {
     // TODO: Turn into a function to close modal
+
+    while (queueBody.firstChild) {
+      queueBody.removeChild(queueBody.firstChild);
+    }
     popupModal.classList.remove('is--visible');
     bodyBlackout.classList.remove('is-blacked-out');
   });
