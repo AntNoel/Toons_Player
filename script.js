@@ -30,6 +30,8 @@ const modalCloseTrigger = document.querySelector('.popup-modal__close');
 const bodyBlackout = document.querySelector('.body-blackout');
 const queueBody = document.querySelector('.queue-body');
 
+const coverSection = document.querySelector('section.cover-section');
+
 /*****************DOM ELEMENTS********************** */
 
 const SECOND = 1000;
@@ -67,6 +69,10 @@ const endTimeStamp = document.querySelector('.end-time');
 
 /*****DOM Changing Functions** */
 
+const animateBackground = (action) => {
+  coverSection.style.animationPlayState =
+    action === 'play' ? 'running' : 'paused';
+};
 const clearMsgTextTimer = (time) => {
   //clear the msg on the msg text
   //Make it disappear after 2 seconds
@@ -167,6 +173,12 @@ const activateQueueModal = () => {
 
   //Add songs in queue to popup modal
   //Cycle through the queue and add a h3 element + p element to the queue-body div with the name of the song as the h3 and unknown as the artist
+
+  //Get the indexof the current song loaded.
+  //Cycle through starting from that index to the end of the array
+  //Load that up to the queue body
+  //Get the length of the array from that index to the end
+
   songQueue.forEach((song) => {
     //Create a new h3, add the text content to it add it to the queue-body div
     const songNameHeader = document.createElement('h3');
@@ -180,6 +192,7 @@ const activateQueueModal = () => {
     const songInfoDiv = document.createElement('div');
     songInfoDiv.appendChild(songNameHeader);
     songInfoDiv.appendChild(songArtistPara);
+    console.log(songInfoDiv);
     queueBody.appendChild(songInfoDiv);
   });
 
@@ -225,6 +238,7 @@ const playNewSong = (song) => {
 
   //Play the song
   audioPlayer.play();
+  animateBackground('play');
 };
 
 const changeSong = (action) => {
@@ -248,7 +262,8 @@ const changeSong = (action) => {
 
 const playPauseSong = () => {
   const action = audioPlayer.paused ? 'play' : 'pause';
-
+  console.log(action);
+  animateBackground(action);
   //The icon shows what pressing the button will do and not the current action
   changePlayButtonIcon(action === 'play' ? 'pause' : 'play');
   audioPlayer[action]();

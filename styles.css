@@ -23,6 +23,9 @@ section.cover-section {
   background-image: url('./assets//backgrounds/purple-coffee.png');
   background-repeat: no-repeat;
   background-size: cover;
+	background-repeat: repeat-y;
+	animation: animatedBackground 40s linear infinite;
+  animation-play-state: paused;
 }
 
 nav.toolbar {
@@ -230,15 +233,27 @@ p.msg-text {
 
 /****songs.html********/
 
+@keyframes animatedBackground {
+	/* from { background-position: 0 0; }
+	to { background-position: 100% 0; } */
+  100%{
+    background-position:0px -3000px;
+  }
+}
+
 .main-section {
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   background-image: url('./assets//backgrounds/purple-coffee.png');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+ 
+
+
+
 }
 
 
@@ -317,7 +332,7 @@ p.msg-text {
 }
 
 .popup-modal.is--visible {
-  opacity: .5;
+  opacity: .7;
   pointer-events: auto;
 }
 
@@ -368,3 +383,9 @@ p.msg-text {
 .playlist-number {
   margin-bottom: 50px;
 }
+
+
+
+
+
+
