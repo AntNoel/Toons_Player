@@ -126,7 +126,6 @@ const updatePlayBar = () => {
 const updateStartTimeStamp = () => {
   //Change it to the playback time in the song
   const minutes = Math.floor(audioPlayer.currentTime / 60);
-  console.log();
   const seconds =
     (audioPlayer.currentTime % 60).toFixed() < 10
       ? `0${(audioPlayer.currentTime % 60).toFixed()}`
@@ -149,7 +148,7 @@ const changeButtonActive = (ele, action) => {
 };
 
 const changeMsgText = (message, type) => {
-  console.log('Type is ', type);
+  //console.log('Type is ', type);
   //Clear the msg text classes
 
   if (msgText.classList.contains('valid', 'invalid', 'warn'))
@@ -174,17 +173,13 @@ const activateQueueModal = () => {
   //Add songs in queue to popup modal
   //Cycle through the queue and add a h3 element + p element to the queue-body div with the name of the song as the h3 and unknown as the artist
 
-  //Get the indexof the current song loaded.
   //Cycle through starting from that index to the end of the array
-  //Load that up to the queue body
-  //Get the length of the array from that index to the end
-
-  songQueue.forEach((song) => {
+  for (let i = songQueue.indexOf(currentSong); i <= songQueue.length - 1; i++) {
     //Create a new h3, add the text content to it add it to the queue-body div
     const songNameHeader = document.createElement('h3');
     songNameHeader.appendChild(
       document.createTextNode(
-        `${song.replace('.mp3', '').replaceAll('_', ' ')}`
+        `${songQueue[i].replace('.mp3', '').replaceAll('_', ' ')}`
       )
     );
     const songArtistPara = document.createElement('p');
@@ -192,12 +187,13 @@ const activateQueueModal = () => {
     const songInfoDiv = document.createElement('div');
     songInfoDiv.appendChild(songNameHeader);
     songInfoDiv.appendChild(songArtistPara);
-    console.log(songInfoDiv);
     queueBody.appendChild(songInfoDiv);
-  });
+  }
 
   const queueHeader = document.querySelector('.queue-header');
-  queueHeader.textContent = `Queue (${songQueue.length})`;
+  queueHeader.textContent = `Queue (${
+    songQueue.slice(songQueue.indexOf(currentSong)).length
+  })`;
 
   popupModal.classList.add('is--visible');
   bodyBlackout.classList.add('is-blacked-out');
@@ -252,7 +248,8 @@ const changeSong = (action) => {
     changeMsgText(
       songQueue.indexOf(currentSong) === 0
         ? 'Youre already at the beginning of the playlist'
-        : 'Youre already at the end of the playlist'
+        : 'Youre already at the end of the playlist',
+      'warn'
     );
     return;
   }
@@ -262,7 +259,6 @@ const changeSong = (action) => {
 
 const playPauseSong = () => {
   const action = audioPlayer.paused ? 'play' : 'pause';
-  console.log(action);
   animateBackground(action);
   //The icon shows what pressing the button will do and not the current action
   changePlayButtonIcon(action === 'play' ? 'pause' : 'play');
@@ -294,19 +290,17 @@ const stopListening = (e) => {
   const buttonClicked = e.target.closest('button');
   if (!buttonClicked) return;
 
-  console.log('%c Time to STOP listenings', 'background: #222; color: #bada55');
+  //console.log('%c Time to STOP listenings', 'background: #222; color: #bada55');
   changeButtonActive(buttonClicked, 'remove');
   changeMsgText('');
   showInstructions(false);
   recognition.stop();
-
-  console.log(speakButton.classList.contains('button-active'));
 };
 const startListening = (e) => {
-  console.log(
-    '%c Time to start listenings',
-    'background: #222; color: #bada55'
-  );
+  // console.log(
+  //   '%c Time to start listenings',
+  //   'background: #222; color: #bada55'
+  // );
   //Make sure it was a button that was clicked
   const buttonClicked = e.target.closest('button');
   if (!buttonClicked) return;
@@ -324,7 +318,6 @@ const startListening = (e) => {
   speechRecognitionList.addFromString(grammar, 1);
   recognition.grammars = speechRecognitionList;
   recognition.lang = 'en-US';
-  console.log(recognition.lang);
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
   recognition.start();
@@ -341,8 +334,7 @@ const startListening = (e) => {
     // The second [0] returns the SpeechRecognitionAlternative at position 0.
     // We then return the transcript property of the SpeechRecognitionAlternative object
     const speechResult = e.results[0][0].transcript.toLowerCase();
-    console.log('Speech Result: ' + speechResult);
-    console.log(playButton.firstElementChild.classList.contains('fa-play'));
+    //console.log('Speech Result: ' + speechResult);
     switch (speechResult) {
       case 'play':
         //Check if the song is already playing
@@ -392,7 +384,7 @@ const startListening = (e) => {
         break;
     }
 
-    console.log('Confidence: ' + e.results[0][0].confidence);
+    //console.log('Confidence: ' + e.results[0][0].confidence);
   };
 
   recognition.onspeechend = () => {
@@ -410,20 +402,20 @@ const startListening = (e) => {
 
   recognition.onaudiostart = (e) => {
     //Fired when the user agent has started to capture audio.
-    console.log('SpeechRecognition.onaudiostart');
+    //console.log('SpeechRecognition.onaudiostart');
   };
   if (recognition.onaudiostart) {
-    console.log('It can start!');
+    //console.log('It can start!');
   }
 
   recognition.onaudioend = (e) => {
     //Fired when the user agent has finished capturing audio.
-    console.log('SpeechRecognition.onaudioend');
+    //console.log('SpeechRecognition.onaudioend');
   };
 
   recognition.onend = (e) => {
     //Fired when the speech recognition service has disconnected.
-    console.log('SpeechRecognition.onend');
+    //console.log('SpeechRecognition.onend');
   };
 
   recognition.onnomatch = (e) => {
@@ -435,22 +427,22 @@ const startListening = (e) => {
 
   recognition.onsoundstart = (e) => {
     //Fired when any sound — recognisable speech or not — has been detected.
-    console.log('SpeechRecognition.onsoundstart');
+    //console.log('SpeechRecognition.onsoundstart');
   };
 
   recognition.onsoundend = (e) => {
     //Fired when any sound — recognisable speech or not — has stopped being detected.
-    console.log('SpeechRecognition.onsoundend');
+    //console.log('SpeechRecognition.onsoundend');
   };
 
   recognition.onspeechstart = (e) => {
     //Fired when sound that is recognised by the speech recognition service as speech has been detected.
-    console.log('SpeechRecognition.onspeechstart');
+    //console.log('SpeechRecognition.onspeechstart');
   };
 
   recognition.onstart = (e) => {
     //Fired when the speech recognition service has begun listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition.
-    console.log('SpeechRecognition.onstart');
+    //console.log('SpeechRecognition.onstart');
     changeMsgText('Listening...', 'valid');
   };
 };
@@ -459,7 +451,6 @@ const handleControlElementClick = (e) => {
   //Make sure it was a button that was clicked
   const buttonClicked = e.target.closest('button');
   if (!buttonClicked) return;
-  console.log(buttonClicked);
 
   switch (buttonClicked) {
     case repeatButton:
@@ -510,7 +501,6 @@ const initPage = () => {
     songQueue.unshift(sessionStorage.getItem('songToPlay'));
     sessionStorage.removeItem('songToPlay');
   }
-  console.log(songQueue[0]);
   //Load up the first song from the queue
   changeAudioSource(songQueue[0]);
   changeSongInfoText(songQueue[0]);
