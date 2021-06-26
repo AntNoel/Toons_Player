@@ -3,7 +3,7 @@
 // For adding touch events to phones : https://stackoverflow.com/questions/11845678/adding-multiple-event-listeners-to-one-element
 
 /*****************DOM ELEMENTS********************* */
-
+console.log(window.location);
 //Top Section
 const [
   backButton, //Change to button?

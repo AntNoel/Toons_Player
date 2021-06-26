@@ -11,9 +11,6 @@ const onSongClick = (e) => {
     'songToPlay',
     e.target.textContent.split(' ').join('_') + '.mp3'
   );
-
-  //Redirect to home page
-  window.location.href = `${window.location.protocol}//${window.location.host}`;
 };
 
 songsButtons.forEach((button) => {
