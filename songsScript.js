@@ -16,3 +16,5 @@ const onSongClick = (e) => {
 songsButtons.forEach((button) => {
   button.onclick = onSongClick;
 });
+
+console.log(location.protocol + '//' + window.location.host);
