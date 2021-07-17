@@ -1,6 +1,6 @@
 # Toons Player
 
-> Turn up your volume, dust of your microphone and start listening to some toons today with the [live demo](antnoel.github.io/toons_player/)
+> Turn up your volume, dust of your microphone and start listening to some toons today with the [live demo](https://antnoel.github.io/Toons_Player/)
 
 ---
 
