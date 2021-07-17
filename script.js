@@ -13,7 +13,7 @@ const [
 const msgText = document.querySelector('.msg-text');
 
 const instructionsDiv = document.querySelector('.instructions-div');
-
+console.log(backButton);
 //Song info
 const [songNameHeader, artistNameHeader] = document.querySelectorAll(
   'section.song-text > *'
@@ -511,7 +511,9 @@ const initPage = () => {
   document
     .querySelector('div.controls')
     .addEventListener('click', (e) => handleControlElementClick(e));
-
+  document
+    .querySelector('div.controls')
+    .addEventListener('mousedown', (e) => handleControlElementClick(e));
   //Audio player events
   audioPlayer.addEventListener('timeupdate', updatePlayBar);
   audioPlayer.addEventListener('timeupdate', updateStartTimeStamp);
